@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700;800&display=swap');
+@import url('./variables.css');
+
+*,
+*::after,
+*::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+html,
+body,
+section{
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--black);
+  font-family: 'Barlow', sans-serif;
+
+  overflow: hidden;
+}
+input,
+textarea,
+select,
+button{
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+}
+button,
+*[role="button"]{
+  
+  background: none;
+  border: none;
+  
+  padding: 0;
+  margin: 0;
+
+  cursor: pointer;
+}
+button:disabled,
+*:disabled{
+  opacity: .8;
+  cursor: not-allowed;
+}
+a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+fieldset{
+  border: none;
+}
+
+figure:not(.thumb):has(img){
+  background-color: #fff;
+}
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+small{
+  font-size: .85rem;
+}

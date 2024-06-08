@@ -1,0 +1,74 @@
+.payment{
+  max-width: 100%;
+  max-height: 100%;
+  min-width: 90%;
+  min-height: 90%;
+  width: max-content;
+  height: max-content;
+  padding: var(--space-xl);
+
+  background-color: var(--bg-gray-dark);
+
+  border-radius: var(--radius-sm);
+}
+.payment .header{
+  gap: var(--space-md);
+  font-size: clamp(var(--text-md), 2.5vw, var(--text-4xl));
+  white-space: nowrap;
+}
+.payment .header + p{
+  font-weight: 500;
+  font-size: clamp(var(--text-md), 2vw, var(--text-2xl));
+}
+.payment :where(.text, .title){  
+  font-size: clamp(var(--text-md), 2vw, var(--text-2xl));
+  white-space: wrap;
+}
+.payment .text{
+  font-weight: 500;
+}
+.text.might-long{
+  max-width: 100%;
+  overflow-x: scroll;
+}
+.payment footer{
+  grid-template-columns: max-content minmax(144px, 320px);
+  gap: var(--space-sm);
+  padding: 0 var(--space-md);
+}
+.payment footer :where(.col-left, .col-right, .row){
+  gap: var(--space-sm);
+}
+.copiable-wrapper{
+  grid-template-columns: auto 64px;
+  gap: var(--space-xl);
+}
+.copy-btn{
+  width: 100%;
+  height: 100%;
+
+  font-size: .8rem;
+
+  background-color: inherit;
+  border: 1px solid var(--white);
+  padding: var(--space-xs) var(--space-md);
+
+  opacity: .6;
+}
+.copy-btn:where(:hover, :active){
+  opacity: 1;
+}
+/* ==== SUCCESS ===== */
+.payment.success{
+  /* border: 2px solid var(--green); */
+}
+.payment.success svg{
+  color: var(--green);
+}
+/* ==== ERROR ===== */
+.payment.error{
+  /* border: 2px solid var(--red); */
+}
+.payment.error svg{
+  color: var(--red);
+}

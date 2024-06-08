@@ -1,0 +1,107 @@
+.form-wrapper{
+  width: 100%;
+  max-width: 960px;
+  min-height: 420px;
+  background-color: var(--bg-gray-dark);
+
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.media{
+  flex: 1;
+}
+video{
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.media .overlay{
+  background-color: var(--red-black);
+  opacity: .4;
+}
+.media article{
+  top: 20%;
+  
+  width: var(--width-max);
+
+  gap: var(--space-sm);
+}
+.media article h3{
+  color: rgba(255, 255, 255, .8);
+}
+/* ====== FORM ====== */
+.form{
+  flex: 1;
+
+  width: var(--width-full);
+  padding: var(--space-2xl) var(--space-2xl);
+
+  gap: var(--space-3xl);
+}
+.form legend h1{
+  font-size: 2.5rem;
+}
+.form legend hr{
+  width: 32px;
+  height: 6px;
+  margin-top: var(--space-xs);
+
+  background-color: var(--red-black);
+  border: none;
+  border-radius: var(--radius-xs);
+}
+.form label{
+  gap: var(--space-2xl);
+}
+.email-area{
+  gap: var(--space-sm);
+}
+.form .at{
+  padding: var(--space-xs) var(--space-sm);
+
+  text-align: center;
+  font-size: var(--text-2xl);
+  
+  background-color: var(--bg-gray);
+
+  border-radius: var(--radius-xs);
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.login-form label:last-of-type{
+  gap: var(--space-xl);
+  width: var(--width-max);
+}
+.form label:last-of-type input{ /* checkbox */
+  width: 16px;
+  height: 16px;
+  accent-color: var(--red-soft);
+}
+.form .submit-btn{
+  padding: var(--space-md) var(--space-4xl);
+  align-self: center;
+}
+.form * {
+  white-space: nowrap;
+}
+.form small{
+  gap: var(--space-sm);
+}
+.form a{
+  width: var(--width-max);
+  color: dodgerblue;
+}
+
+@media only screen and (max-width: 720px) {
+  .media{
+    display: none;
+  }
+}

@@ -1,0 +1,209 @@
+.single-product-container{
+  gap: var(--space-3xl);
+}
+.single-product{
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+}
+.single-product .lightbox{
+  flex: 3 1 336px;
+}
+.single-product .article{
+  flex: 1 1 320px;
+  gap: var(--space-md);
+}
+.single-product .desc{
+  display: none;
+}
+.single-product h4{
+  font-size: var(--text-2xl)
+}
+.single-product small{
+  font-size: var(--text-md);
+  font-weight: 500;
+}
+.single-product .stars{
+  font-size: var(--text-3xl);
+}
+.single-product footer{
+  gap: var(--space-xl);
+}
+.single-product footer h5{
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-sm);
+}
+.single-product h4 + span{
+  font-weight: 500;
+}
+.single-product .btn{
+  padding: var(--space-md);
+  width: var(--width-full);
+}
+
+@media only screen and (max-width: 600px) {
+  .lightbox{
+    flex-direction: column-reverse;
+    gap: var(--space-xs);
+  }
+  .lightbox .thumbs{
+    position: static;
+    transform: translateX(0);
+    background-color: transparent;
+  }
+}
+
+/* ========= TABS ======== */
+
+.single-product-section .tabs{
+  background-color: var(--red-black);
+  width: var(--width-max);
+}
+.single-product-section .tabs a{
+  padding: var(--space-xl) var(--space-3xl);
+}
+.single-product-section .tabs a.active{
+  background-color: var(--bg-gray-dark);
+}
+
+/* ========= DESCRIPTION ======== */
+.single-product-section .desc{
+  background-color: var(--bg-gray-dark);
+  padding: var(--space-2xl);
+}
+/* ========= RATING AREA ======== */
+
+.user-rating{
+  align-self: center;
+}
+.user-rating .stars{
+  gap: var(--space-xs);
+}
+.user-rating .star{
+  color: var(--bg-gray);
+  font-size: var(--text-8xl);
+  transition: color .1s ease-in;
+}
+.user-rating:has(.star:hover) .star:not(.star:where(:hover, :active) ~.star){
+  color: var(--yellow);
+}
+.rated.star{
+  color: var(--yellow) !important;
+}
+/* ========= UNAUTH ======== */
+.unauth{
+  gap: var(--space-xs);
+  background-color: var(--bg-gray-dark);
+  padding: var(--space-2xl);
+  border-radius: var(--radius-xs);
+}
+.unauth-links{
+  width: var(--width-max);
+  gap: var(--space-xs);
+}
+.unauth :where(a, span){
+  font-size: var(--text-sm);
+}
+.unauth a{
+  color: dodgerblue;
+}
+/* ========= COMMENTS ======== */
+.comments{
+  gap: var(--space-3xl);
+}
+.comment-list{
+  gap: var(--space-2xl);
+}
+.new-comment{
+  gap: var(--space-xl);
+}
+.new-comment header{
+  gap: var(--space-md);
+}
+.new-comment :where(input, textarea){
+  padding: var(--space-md);
+  background-color: inherit;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--bg-gray);
+}
+.new-comment :where(input:focus, textarea:focus){
+  border-bottom-color: var(--red);
+}
+.new-comment :where(input, textarea)::placeholder{
+  color: var(--white);
+  opacity: .8;
+}
+.new-comment input{
+  font-size: var(--text-2xl);
+}
+.new-comment textarea{
+  font-size: var(--text-xl);
+  resize: none;
+  min-height: 160px;
+}
+.new-comment footer .submit-btn{
+  min-width: 240px;
+  padding: var(--space-md);
+  font-size: var(--text-xl);
+}
+/* ========= REVIEWS (COMMENT CARDS) ======== */
+.comment,
+.edit-comment{
+  gap: var(--space-2xl);
+  padding: var(--space-2xl) var(--space-4xl);
+  border-radius: var(--radius-xs);
+
+  background-color: var(--bg-gray-dark);
+}
+.comment header{
+  gap: var(--space-2xl);
+}
+.comment header .left{
+  gap: var(--space-xl);
+}
+.comment header figure{
+  gap: var(--space-xl);
+}
+.comment header figure h4{
+  text-transform: capitalize;
+}
+.comment time{
+  font-weight: 500;
+  gap: var(--space-sm);
+}
+.comment time small:first-child{
+  opacity: .8;
+}
+.comment-action{
+  gap: var(--space-2xl);
+}
+
+:where(.comment, .edit-comment) footer{
+  gap: var(--space-2xl);
+}
+.comment article{
+  gap: var(--space-sm);
+}
+.read-more-btn{
+  align-self: center;
+  font-size: var(--text-sm);
+}
+
+/* ========= EDIT COMMENT ======== */
+.edit-comment :where(input, textarea){
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--white-opac);
+  padding: var(--space-md);
+  resize: none;
+}
+.edit-comment :where(input, textarea):focus{
+  border-bottom-color: var(--red);
+}
+.edit-comment textarea{
+  min-height: 96px;
+}
+.edit-comment footer button{
+  letter-spacing: .05rem;
+}

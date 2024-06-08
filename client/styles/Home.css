@@ -1,0 +1,15 @@
+.home-container{
+  gap: var(--space-4xl);
+}
+.spinn{
+  min-height: 420px;  
+}
+.opp-info{
+  background-color: var(--red-black);
+
+  padding: var(--space-sm);
+}
+.opp-title{
+  flex: 1;
+  font-size: clamp(var(--text-xl), 2vw, var(--text-md));
+}

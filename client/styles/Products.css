@@ -1,0 +1,139 @@
+.products-wrapper {
+  max-width: var(--width-full);
+  min-height: 320px;
+  padding: var(--space-2xl) 0;
+
+  gap: var(--space-2xl);
+
+  & .skeleton.title{
+    max-width: 160px;
+  }
+}
+
+.products-wrapper:not(:last-child) {
+  border-bottom: 1px solid var(--bg-gray-dark);
+}
+
+.products-wrapper > div h2 {
+  text-transform: capitalize;
+}
+
+.products {
+  flex-wrap: nowrap;
+  width: var(--width-full);
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  flex-wrap: nowrap;
+  gap: var(--space-md);
+}
+
+.products-wrapper .arrow {
+  height: var(--height-full);
+  z-index: 2;
+  font-size: var(--text-4xl);
+  transition: opacity .2s ease-out;
+
+  &:where(:hover, :active) {
+    opacity: .8;
+  }
+
+  &.arrow-prev {
+    left: 0;
+    background: linear-gradient(to right,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, .8) 50%,
+        rgba(0, 0, 0, .6) 75%,
+        rgba(0, 0, 0, .4) 90%,
+        transparent);
+  }
+
+  &.arrow-next {
+    right: 0;
+    background: linear-gradient(to left,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, .8) 50%,
+        rgba(0, 0, 0, .6) 75%,
+        rgba(0, 0, 0, .4) 90%,
+        transparent);
+  }
+}
+
+.product {
+  flex: 0 0 196px;
+
+  grid-auto-flow: row;
+  grid-auto-rows: max-content;
+  gap: var(--space-md);
+
+  padding: var(--space-md);
+
+  border-radius: var(--space-sm);
+  border: 1px solid var(--bg-gray-dark);
+
+  & img{
+    object-fit: fill;
+  }
+}
+
+.product .img{
+  width: 100%;
+  height: 144px;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+}
+
+.fav-btn {
+  z-index: 1;
+  right: 4px;
+  top: 4px;
+  color: var(--red);
+  font-size: var(--text-4xl);
+}
+.product .title-desc h4{
+  font-size: clamp(var(--text-md), 1.75vw, var(--text-xl));
+}
+.product .title-desc p{
+  font-size: clamp(var(--text-sm), 1.5vw, var(--text-md));
+}
+.product small{
+  font-size: clamp(var(--text-xs), 1.25vw, var(--text-sm));
+}
+.product .article,
+.product footer {
+  gap: var(--space-md);
+}
+
+.stars-wrapper {
+  gap: var(--space-xs);
+}
+
+.stars {
+  white-space: nowrap;
+  font-size: clamp(var(--text-md), 2.5vw, var(--text-xl));
+}
+
+.stars-outer {
+  color: var(--bg-gray);
+}
+
+.stars-inner {
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.stars-inner svg {
+  color: var(--yellow);
+}
+
+.ratings-reviews,
+.price-stock {
+  gap: var(--space-md);
+  white-space: nowrap;
+}
+
+.product .btn {
+  flex: 1;
+}

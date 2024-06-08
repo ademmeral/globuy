@@ -1,0 +1,66 @@
+.skeleton{
+  animation: pulse 2s linear infinite;
+  width: 100%;
+  background-color: var(--bg-gray);
+}
+.skeleton.title{
+  height: 24px;
+}
+.skeleton.title.big{
+  height: 40px;
+}
+.skeleton.text{
+  height: 1rem;
+  max-width: 160px;
+}
+.skeleton.img{
+  aspect-ratio: 2/1;
+
+  align-self: center;
+
+  border-radius: var(--radius-xs);
+}
+@keyframes pulse {
+  50%{
+    opacity: .6;
+  }
+}
+
+/* ======= PRODUCT ======== */
+.products-layout:has(.skeleton){
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+.products:has(.skeleton){
+  width: 100%;
+}
+.products-skeleton{
+  width: 100%;
+  overflow-x: scroll;
+}
+.product:has(.skeleton){
+  min-width: 240px;
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  width: max-content;
+  height: max-content;
+}
+.justify-btw:has(.skeleton){
+  gap: var(--space-md);
+}
+
+/* ======= PRODUCT LIST ======== */
+.products{
+  width: 100%;
+  gap: var(--space-xl);
+}
+.products-skeleton{
+  width: 100%;
+  height: max-content;
+  gap: var(--space-xl);
+}

@@ -1,0 +1,116 @@
+
+:root{
+  --black : #000;
+  --black-opac : rgba(0,0,0,0.4);
+  --white : #eee;
+  --white-soft : #ffffff99;
+  --white-opac : #ffffff4d;
+  --link: dodgerblue;
+
+  --bg-gray-dark : #222;
+  --bg-gray : #555;
+  --bg-gray-soft : #ccc;
+
+
+  --dark : #03071e;
+  --red-dark : #370617;
+  --red-black : #6a040f;
+  --red : #9d0208;
+  --red-soft : #d00000;
+  --red-opac : #d000004d;
+  --orange-dark : #d00000;
+  --orange : #dc2f02;
+  --orange-soft : #e85d04;
+  --yellow-dark : #f48c06;
+  --yellow : #faa307;
+  --yellow-soft : #ffba08;
+  --green-dark : #344e41;
+  --green-light : #40916c;
+  --green : green;
+
+
+  --space-2xs : .1rem;
+  --space-xs : .25rem;
+  --space-sm : .5rem;
+  --space-md : .75rem;
+  --space-xl : 1rem;
+  --space-2xl : 1.5rem;
+  --space-3xl : 2rem;
+  --space-4xl : 3rem;
+  --space-5xl : 4rem;
+  --space-6xl : 5rem;
+  --space-7xl : 6rem;
+  --space-8xl : 7rem;
+
+  --text-xs : .80rem;
+  --text-sm : .90rem;
+  --text-md : 1rem;
+  --text-xl : 1.15rem;
+  --text-2xl : 1.5rem;
+  --text-3xl : 1.75rem;
+  --text-4xl : 2rem;
+  --text-5xl : 2.25rem;
+  --text-6xl : 2.5rem;
+  --text-7xl : 2.75rem;
+  --text-8xl : 3rem;
+
+  --radius-xs : 8px;
+  --radius-sm : 16px;
+  --radius-md : 24px;
+  --radius-xl : 32px;
+  --radius-full : 50%;
+
+  --width-xs : 32px;
+  --width-sm : 40px;
+  --width-md : 48px;
+  --width-xl : 56px;
+  --width-2xl : 64px;
+  --width-3xl : 72px;
+  --width-4xl : 80px;
+  --width-5xl : 88px;
+  --width-6xl : 96px;
+  --width-7xl : 112px;
+  --width-8xl : 120px;
+  --width-9xl : 240px;
+  --width-10xl : 320px;
+  --width-container : 1280px;
+  --width-max : max-content;
+  --width-full : 100%;
+  --width-min : min-content;
+  --width-screen : 100vw;
+
+  --height-xs : 32px;
+  --height-sm : 40px;
+  --height-md : 48px;
+  --height-xl : 56px;
+  --height-2xl : 64px;
+  --height-3xl : 72px;
+  --height-4xl : 80px;
+  --height-5xl : 88px;
+  --height-6xl : 96px;
+  --height-7xl : 112px;
+  --height-8xl : 120px;
+  --height-form : 500px;
+  --height-max : max-content;
+  --height-full : 100%;
+  --height-screen : 100vh;
+  --height-slider : 400px;
+
+  --size-icon : 40px;
+  --size-image : 96px;
+  --size-image-big : 160px;
+  --size-image-xl : 250px;
+  --size-image-2xl : 320px;
+
+  --size-xs: 16px;
+  --size-sm : 24px;
+  --size-md : 32px;
+  --size-xl : 40px;
+  --size-2xl : 48px;
+  --size-3xl : 56px;
+  --size-4xl: 64px;
+  --size-5xl: 72px;
+  --size-6xl: 80px;
+  --size-7xl: 88px;
+  --size-8xl: 96px;
+}

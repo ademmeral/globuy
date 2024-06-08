@@ -1,0 +1,6 @@
+.fav-list{
+  gap: var(--space-2xl);
+}
+.fav-list button{
+  padding: var(--space-sm);
+}

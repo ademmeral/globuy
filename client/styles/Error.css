@@ -1,0 +1,14 @@
+.error header{
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--white-opac);
+}
+.error header h3{
+  font-size: var(--text-2xl);
+}
+.error header svg{
+  font-size: var(--text-3xl);
+}
+.error p{
+  margin-top: var(--space-xl);
+}

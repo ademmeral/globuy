@@ -1,0 +1,16 @@
+.spinner{
+  width: 120px;
+  height: 120px;
+  margin: auto auto;
+
+  border: 6px solid transparent;
+  border-radius: 50%;
+  border-color: white var(--white-opac) var(--white-opac) var(--white-opac);
+
+  animation: spin .8s linear infinite;
+}
+@keyframes spin {
+  100%{
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,76 @@
+.overlay{
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+}
+.overlay .close-btn{
+  height: var(--height-max);
+  width: var(--width-max);
+  
+  right: 8px;
+  top: 8px;
+}
+.player{
+  height: min(100%, 560px);
+  aspect-ratio: 3/5;
+  padding: var(--space-xl);
+
+  background-color: var(--bg-gray-dark);
+
+  border-radius: var(--radius-xs);
+
+  row-gap: var(--space-2xl);
+
+  & .info{
+    z-index: 0;
+    letter-spacing: .8px;
+    font-size: var(--text-2xl);
+    background-color: var(--black-opac);
+  }
+}
+.stick-list{
+  gap: var(--space-xs);
+}
+.stick-list *{
+  flex: 1;
+
+   height: 4px;
+
+   border-radius: 2px;
+}
+.action-btns{
+  gap: var(--space-md);
+}
+.controller svg{
+  width: var(--size-md);
+  height: var(--size-md);
+}
+.view{
+  flex: 1;
+
+  height: 100%;
+
+  border-radius: var(--space-xs);
+  
+  overflow: hidden;
+}
+.view > figure:not(.spinner){
+  flex: 1;
+}
+.view p{
+  font-size: clamp(var(--text-xl), 2.25vw, var(--text-4xl));
+}
+.view figure :where(img, video, audio){
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.indicators{
+  gap: var(--space-2xl);
+  & > *{
+    gap: var(--space-sm);
+    & svg{
+      font-size: 20px;
+    }
+  }
+}

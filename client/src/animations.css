@@ -1,0 +1,65 @@
+.fade{
+  animation: fade .25s linear;
+}
+@keyframes fade {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+.online{
+  background-color: green;
+  animation: online 1s linear infinite;
+}
+@keyframes online {
+  0%{
+    background-color: var(--green-dark);
+  }
+  50%{
+    background-color: var(--green);
+  }
+  100%{
+    background-color: var(--green-dark);
+  }
+}
+
+.slide{
+  animation: slide .15s ease-in;
+}
+@keyframes slide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes pulse {
+  50% {
+      opacity: .5;
+  }
+}
+
+.rainbow{
+  background: linear-gradient(
+    90deg, 
+    rgba(255,0,0,1) 0%, rgba(255,154,0,1) 10%, rgba(208,222,33,1) 20%, 
+    rgba(79,220,74,1) 30%, rgba(63,218,216,1) 40%, rgba(47,201,226,1) 50%, 
+    rgba(28,127,238,1) 60%, rgba(95,21,242,1) 70%, rgba(186,12,248,1) 80%, 
+    rgba(251,7,217,1) 90%, rgba(255,0,0,1) 100%
+  );
+  animation: rainbow 2.4s linear infinite;
+}
+
+@keyframes rainbow {
+  100%{
+    transform: rotate(360deg);
+  }
+}
