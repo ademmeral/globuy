@@ -8,8 +8,8 @@ export const MEDIA = {
         ? 'duoklvmeh' : 'duoklvmeh',
   ACTION : `image/upload`,
   THUMB : `c_fill,h_40,w_40`, 
-  SLIDER : `c_fill,h_420,ar_4:3`,
-  CARD : `c_fill,h_96,w_96`,
+  SLIDER : `c_fill,h_640,ar_4:3`,
+  CARD : `c_fill,h_320,w_320`,
   PLACEHOLDER: 'c_fill,h_40,w_40,e_blur:400,q_25,ar_1:1',
   STORY : 'c_fill,w_240,ar_3:5',
 }

@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
 import { useCart, useCartSum } from '@hooks/cart'
 import { BiErrorCircle } from "react-icons/bi";
 import CartProduct from '@components/Products/Product/CartProduct';
 import Spinner from '@components/Spinner'
 import Error from '@components/Error'
-import { showToast } from '@utils/sync';
 import { useOrdersMutation } from '@hooks/orders';
-import { usePaymentsMutation } from '@hooks/payments';
-import { useSWRConfig } from 'swr'
 import '@styles/Cart.css';
 
 const Sum = () => {
@@ -18,25 +14,21 @@ const Sum = () => {
 }
 
 function Cart() {
-  const { data: products, isLoading: cartLoading, error : cartErr } = useCart();
-  const { trigger: triggerOrders, isMutating: ordersMutating, error: ordersErr } = useOrdersMutation('/single');
-  const { trigger: triggerPayment, isMutating: paymentsMutating, error: paymentsErr } = usePaymentsMutation('/single');
-  // const { cache, mutate } = useSWRConfig();
+  const { data: products, isLoading: cartLoading, error : cartErr, location, currencies } = useCart();
+  const { trigger, error } = useOrdersMutation('/checkout');
 
   const handleSubmit = async () => {
     try {
-      showToast.loading()
-      const orders_ = await triggerOrders(products)
-      const payments_ = await triggerPayment(orders_)
-      showToast.dissmissAll();
-      window.location = payments_.url;
+      const url = await trigger({ products })
+      window.location.href = url;
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
-
-  if (cartLoading) return <Spinner style={{ width: '64px', height: '64px' }} />;
-  if (cartErr) return <Error error={cartErr} />;
+  if (cartLoading || location.isLoading || currencies.isLoading) 
+    return <Spinner />;
+  if (cartErr || location.error || currencies.error) 
+    return <Error error={cartErr || location.error || currencies.error} />;
 
   const productList = (
     <ul className="cart-item-list flex-col hide-scroll">
@@ -55,7 +47,7 @@ function Cart() {
       {
         <footer className="cart-footer flex justify-btw align-center">
           <button
-            disabled={!products || !products?.length || cartLoading || ordersMutating || paymentsMutating}
+            disabled={!products || !products?.length || cartLoading}
             className="checkout-btn btn-dark btn"
             onClick={handleSubmit}
           >Checkout</button>

@@ -1,11 +1,9 @@
-import React, { useLayoutEffect} from 'react'
-import Spinner from '@components/Spinner'
-import Error from '@components/Error'
+import React, { useEffect, useRef} from 'react'
 import { CgCheckO } from "react-icons/cg";
-import { useCartMutation, useCartSum } from '@hooks/cart'
-import { useSuccessPayment } from '@hooks/payments';
 import { useCopyText } from '@hooks/hooks';
-import { capitalize } from '@utils/sync';
+import { useCartSum } from '@hooks/cart'
+import { useCartMutation } from '@hooks/cart';
+import { useNavigate } from 'react-router-dom'
 import '@styles/Payment.css';
 
 const TitleRow = ({title}) => {
@@ -33,18 +31,21 @@ const CopiableText = ({ text }) => {
 }
 
 function Success() {
-  const { data: payment, error: paymentErr, isLoading: paymentLoading } = useSuccessPayment();
   const { trigger } = useCartMutation();
   const { mutate } = useCartSum();
-  
-  useLayoutEffect(() => {
+  const navigate = useNavigate();
+  const timeout = useRef(0);
+
+  useEffect(() => {
     trigger();
     mutate(0);
+    timeout.current = setTimeout(() => {
+      navigate('/');
+    }, 3000);
+
+    return () => { clearTimeout(timeout.current) }
   }, [])
 
-  if (paymentLoading) return <Spinner />;
-  else if (paymentErr) return <Error error={paymentErr} />;
-  if (!payment) return;
   return (
     <article className='payment success container payment-container self-center m-center flex-col justify-btw'>
       <header className='flex content-center header'>
@@ -52,22 +53,6 @@ function Success() {
         <h1>Latest Payment Successful</h1>
       </header>
       <p className='text-center'>Your payment has been accepted successfully 😊</p>
-      <footer className='grid m-center'>
-        <div className="col col-left grid">
-          <TitleRow title={'Method'}/>
-          <TitleRow title={'Currency'}/>
-          <TitleRow title={'Transaction ID'}/>
-          <TitleRow title={'Total Items'}/>
-          <TitleRow title={'Amount'}/>
-        </div>
-        <div className="col col-right grid no-flow">
-          <p className='text row'>{capitalize(payment.method)}</p>
-          <p className='text row'>{payment.currency}</p>
-          <CopiableText text={payment.transactionId}/>
-          <p className='text row'>{payment.totalItem}</p>
-          <p className='text row'>{payment.sum}</p>
-        </div>
-      </footer>
     </article>
   )
 }

@@ -1,28 +1,20 @@
-import { Router } from 'express';
-import { authenticate, authorize, notFound, verifyJwt } from '../middlewares/middlewares.mjs';
-import { 
-  addMany, addOne, deleteMany, deleteOne, getLatest, getMany, 
-  getOne, updateMany, updateOne
-} from '../controllers/orders.mjs';
+import { Router } from 'express'
+import { checkout, getMany, getOne } from '../controllers/orders.mjs';
+import { checkPageAndLimit, notFound } from '../middlewares/middlewares.mjs';
 
 const router = Router();
 
 router.route('/')
-  .get(verifyJwt, getMany)
-  .post(verifyJwt, authorize, addMany)
-  .put(verifyJwt, authorize, updateMany)
-  .delete(verifyJwt, authorize, deleteMany)
-  .all(notFound);
+    .get(checkPageAndLimit, getMany)
+    .all(notFound);
 
-router.route('/single')
-  .post(verifyJwt, addOne)
-  .get(verifyJwt, getLatest)
-  .all(notFound);
+router.route('/checkout')
+    .post(checkout)
+    .all(notFound);
+
 
 router.route('/:id')
-  .get(verifyJwt, getOne)
-  .put(verifyJwt, updateOne)
-  .delete(verifyJwt, deleteOne)
-  .all(notFound);
+    .get(getOne)
+    .all(notFound);
 
 export default router;

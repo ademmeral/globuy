@@ -1,5 +1,4 @@
 import { mutate } from 'swr';
-import { toLocaleCurrency } from '@utils/sync';
 
 const config = { countryCode: 'TR', currency: 'TRY' }
 
@@ -9,6 +8,7 @@ export const getStorage = (name) =>
 export const setStorage = (name, payload) => {
   let cart = getStorage(name);
   const found = cart.find(item => item._id === payload._id);
+
   if (!found) {
     cart = cart.concat([{ ...payload, qty: 1 }]);
     window.localStorage.setItem(name, JSON.stringify(cart));
@@ -40,8 +40,8 @@ export const setQty = (name, id, qty) => {
 
 export const handleSum = () => {
   const products = getStorage('cart');
-  const sum = +products.reduce((acc, p) => {
-    return acc + p.price * +p.qty;
+  const sum = products.reduce((acc, p) => {
+    return acc + (+p.price * +p.qty);
   }, 0).toFixed(2);
   return sum;
 }

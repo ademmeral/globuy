@@ -15,24 +15,31 @@ import favoritesRoute from '../routes/favorites.mjs';
 import ratingsRoute from '../routes/ratings.mjs';
 import commentsRoute from '../routes/comments.mjs';
 import ordersRoute from '../routes/orders.mjs';
-import paymentsRoute from '../routes/payments.mjs';
 import salesRoute from '../routes/sales.mjs';
 import storiesRoute from '../routes/stories.mjs';
 import mediaRoute from '../routes/media.mjs';
+import { checkoutWebhook } from '../controllers/orders.mjs';
 
-dotenv.config({ path: path.resolve('./.env') });
+dotenv.config({ path: path.resolve('./globuy.env') });
 connectDB();
 
 const app = express();
 const port = process.env.PORT || 3001
 
 app.use(cors(CORS_OPTIONS));
+
+app.post(
+  '/webhook',
+  express.raw({ type: 'application/json' }),
+  checkoutWebhook
+);
+
 app.use(express.json());
 app.use(cookieParser()); 
 app.use(express.urlencoded({
   extended: true,
   limit : 100_000,
-  parameterLimit : 24
+  parameterLimit : 32
 }));
 
 app.use(fileUpload({
@@ -58,12 +65,11 @@ app.use('/products', productsRoute);
 app.use('/favorites', favoritesRoute);
 app.use('/ratings', ratingsRoute);
 app.use('/comments', commentsRoute);
-app.use('/orders', ordersRoute);
-app.use('/payments', paymentsRoute);
 app.use('/sales', salesRoute);
+app.use('/orders', ordersRoute);
 app.use('/stories', storiesRoute);
 app.use('/media', mediaRoute);
 
-app.listen(port, () => {
+app.listen(port, '127.0.0.1', () => {
   console.log(`Server is running on port ${port}`)
 });

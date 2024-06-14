@@ -48,7 +48,7 @@ export async function addMany(req, res){
       return res.status(400).send('Data must be in type of Array!');
 
     const data = req.body.data.map( d => ({ ...d, _id: d.name }) )
-    await Brand.insertMany(data).exec();
+    await Brand.insertMany(data)
     return res.status(201).send('Added! successfully');
     
   } catch (err) {

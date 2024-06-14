@@ -14,7 +14,7 @@ export async function getMany(req, res){
 
 export async function addMany(req, res){
   try {
-    const found = await Story.insertMany(req.body).exec();
+    const found = await Story.insertMany(req.body);
     return res.status(200).json('Added successfully 😊')
   } catch (err) {
     return res.status(500).send(`${err}`)

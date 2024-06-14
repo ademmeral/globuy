@@ -66,8 +66,8 @@ export function checkPageAndLimit(req, res, next) {
         'Page & limit are required and must be in type of number,\
           We cannot put the whole database in front of you at once'
       );
-    req.page = +page;
-    req.limit = +limit;
+    req.query.page = +page;
+    req.query.limit = +limit;
     req.query.skip = (+page - 1) * Math.min(+limit, 10);
     return next();
   } catch (err) {

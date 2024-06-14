@@ -1,34 +1,51 @@
 import { model, Schema } from 'mongoose';
-import autopop from 'mongoose-autopopulate';
 import { schema } from '../utils/utils.mjs';
 
 export const OrderSchema = new Schema({
-  userId : {
-    type : String,
-    required : schema.required('User ID')
+  customerId : {
+    type: String,
+    required: schema.required('Customer ID'),
+    unique: schema.unique('Customer ID')
   },
-  product: {
-    type: Schema.Types.ObjectId,
-    ref: 'Product',
-    required: schema.required('Product ID'),
-    autopopulate: true
+  paymentId: {
+    type: String,
+    required: schema.required('Payment ID'),
+    unique: schema.unique('Payment ID')
   },
-  qty: {
-    type: Number,
-    required: schema.required('Quantity'),
-    min: schema.min(1, 'Quantity'),
+  products: [{
+    product: {
+      type: Schema.Types.ObjectId,
+      ref: 'Product',
+      required: schema.required('Product ID'),
+      unique: schema.unique('Product ID')
+    },
+    qty: {
+      type: Number,
+      required: schema.required('Quantity'),
+      min: schema.min(1, 'Quantity'),
+      default : 1
+    }
+  }],
+  customerDetails: {
+    email : String,
+    address: Object,
+    fullname: String,
+    phone: String,
   },
   status: {
     type: String,
     enum: ['pending', 'processing', 'shipped', 'delivered'],
     default: 'pending',
   },
-  address: {
+  paymentStatus  : {
     type: String,
-    required: schema.required('Payment address')
-  }
+    enum: ['failed', 'pending', 'paid'],
+    default : 'pending',
+  },
+  currency: {
+    type: String,
+    required: schema.required('Currency')
+  },
 }, { timestamps: true });
-
-OrderSchema.plugin(autopop);
 
 export default model('Order', OrderSchema);

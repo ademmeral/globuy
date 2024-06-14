@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import mongoose, { pluralize } from 'mongoose';
+import mongoose from 'mongoose';
 import fs from 'node:fs/promises';
 
 export const id = () => new mongoose.Types.ObjectId();
@@ -46,8 +46,10 @@ export const cleanObject = (object) => {
 }
 
 export const EXPIRATION_DATE = 7 * 24 * 60 * 60 * 1000;
-export const createToken = (payload) =>
-  jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: EXPIRATION_DATE });
+
+export const createToken = (payload) => 
+  jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: EXPIRATION_DATE })
+
 export const setCookie = (res, token) => {
   res.cookie('jwt', token, {
     httpOnly: true,

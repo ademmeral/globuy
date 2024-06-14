@@ -6,9 +6,12 @@ import AddStory from "./Add";
 import Story from "./Story";
 import StoryListSkeleton from '@components/Skeletons/StoryList'
 import '@styles/Stories/Stories.css'
+import { useUser } from "../../hooks/user";
 
 function StoryList() {
-
+  const {data: user} = useUser('/auth');
+  if (!user) return;
+  
   const params = [{ page: 1, limit: 10 }];
   const { data: stories, isLoading, isValidating, error } = useStories(params);
   

@@ -1,13 +1,19 @@
-import { memo, useRef, useState } from 'react';
+import { memo, useEffect, useRef, useState } from 'react';
 import { mutate } from 'swr';
-import { useSWRConfig } from 'swr';
+import { useProductsQuery } from '@hooks/products';
+import { TIMEOUT_MD } from '../../../constants/constants';
 
 let Checkbox = ({ queryVal, queryKey }) => {
-  const { cache } = useSWRConfig();
-  const exists = cache.get('/products/query')?.data;
+  const { data: queries } = useProductsQuery();
   const [checked, setChecked] = useState(
-    exists.some( param => (queryKey in param) && param[queryKey] === queryVal )
-  ) 
+    queries.some( param => (queryKey in param) && param[queryKey] === queryVal )
+  );
+
+  useEffect(() => {
+    setChecked(
+      queries.some( param => (queryKey in param) && param[queryKey] === queryVal )
+    );
+  }, [queries])
 
   const handleChange = async e => {
     setChecked(!checked)
@@ -15,7 +21,7 @@ let Checkbox = ({ queryVal, queryKey }) => {
       mutate(
         '/products/query',
         prev => [
-          ...prev.filter(q => q[queryKey] !== e.target.name), 
+          ...prev.filter(q => q[queryKey] !== e.target.name),
           { [queryKey]: e.target.name }
         ],
         { revalidate: false }

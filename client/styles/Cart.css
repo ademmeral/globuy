@@ -19,20 +19,15 @@
 }
 .cart-product{
   gap: var(--space-2xl);
-  flex-wrap: wrap;
 }
 .cart-product .img{
   flex: 1;
-  min-width: 320px;
-  max-height: 320px;
-  aspect-ratio: 1/1;
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
 .cart-product .article{
-  flex: 1;
-  gap: var(--space-2xl);
-  min-width: 320px;
+  flex: 4;
+  gap: var(--space-xl);
 }
 .cart-product .article h4{
   margin-bottom: var(--space-sm);
@@ -46,6 +41,19 @@
 .cart-product .stars{
   font-size: var(--space-2xl);
 }
+.stars-outer {
+  color: var(--bg-gray);
+}
+
+.stars-inner {
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.stars-inner svg {
+  color: var(--yellow);
+}
 .cart-product .btns{
   gap: var(--space-md);
   flex-wrap: wrap;
@@ -58,7 +66,7 @@
 }
 
 .cart-product input{
-  max-width: var(--size-xl);
+  max-width: var(--size-2xl);
   color: var(--white);
   background-color: var(--bg-gray);
   padding: var(--space-sm);

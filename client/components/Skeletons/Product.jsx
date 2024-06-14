@@ -10,13 +10,9 @@ function Product() {
         <div className="skeleton title" />
       </div>
       <div className='flex justify-btw align-center'>
-        <div className='skeleton text' />
-        <div className="skeleton text" />
+        <div className='skeleton title' />
+        <div className="skeleton title" />
       </div>
-      {/* <div className="flex justify-btw align-center">
-        <div className="skeleton text" />
-        <div className="skeleton text" />
-      </div> */}
     </div>
   )
 }

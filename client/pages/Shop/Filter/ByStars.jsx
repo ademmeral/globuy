@@ -16,7 +16,7 @@ const Stars = ({ stars }) => {
       <div className="flex">
         {stars.map(el => el)}
       </div>
-      <small>{`(${stars.length})`}</small>
+      <small>{`(${stars.length > 4 ? 4.5 : stars.length}+)`}</small>
     </button>
   )
 }

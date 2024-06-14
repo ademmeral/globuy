@@ -1,46 +1,37 @@
-import useSwr, { useSWRConfig } from 'swr'
+import useSwr from 'swr'
 import useSwrMutation from 'swr/mutation'
 import { useUser} from '@hooks/user'
 import { useClientLocation} from '@hooks/location'
 import api from '@api/api';
-import { pickFloatFromString, setParams } from '@utils/sync';
+import { setParams } from '@utils/sync';
 import { fetcher } from '@utils/async';
+import { useCurrency } from './currencies';
 
-export const useOrder = (params = []) => {
-  const { data: usr } = useUser('/auth');
-  const url = usr ? `/orders/single` : null;
-  params = url ? [...params, { userId: usr._id }] : []
-  const path = params.length ? [`/orders/latest`, ...params] : null;
+export const useOrder = (slug= '', params = []) => {
+  const path = params.length ? [`/orders`, ...params] : null;
 
- return useSwr(path, async () => fetcher(url, params));
+ return useSwr(path, async () => fetcher(`/${url}${slug}`, params));
 }
 
-export const useOrdersMutation = (params = []) => {
-  const { data: user } = useUser('/auth');
+export const useOrdersMutation = (slug = '') => {
   const { data: location } = useClientLocation();
+  const { data: currencies } = useCurrency()
 
-  params = user ? [...params, { userId: user._id }] : []
-  params = setParams(params);
-  const path = user && location ? ['/orders', params] : null;
+  const path = location && currencies ? ['/orders', slug] : null;
 
-  return useSwrMutation(path, async (_, { arg: products }) => {
-    if (!products) return;
-    let orders = products.map(({ _id: product, qty, priceByLocation, price }) => {
+  return useSwrMutation(path, async (_, { arg }) => {
+    if (!arg) return;
+    const { currency } = location;
+    const { rates } = currencies;
+
+    let orders = arg.products.map(({ _id: product, qty, price, photos, title }) => {
       return {
-        user: user._id,
-        product, qty, price,
-        priceByCurrency: pickFloatFromString(priceByLocation),
-        currency: location.currency,
-        method: 'card',
-        address: "47 W 13th St, New York, NY 10011, USA",
+        product, qty, price, photo : photos[0].url, title,
+        priceByCurrency: price * rates[currency], currency
       }
     });
-    const { data: result } = await api.post(`/orders?${params}`, { data: orders });
-    orders = orders.map(o => {
-      const found = result.find(ord => ord.product === o.product)
-      return { ...o, order: found?._id }
-    })
-    return orders;
+    const { data: result } = await api.post(`/orders${slug}`, { ...arg, products: orders });
+    return result;
   }, { revalidate: false, populateCache: true })
 
 };

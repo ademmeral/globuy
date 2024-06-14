@@ -126,7 +126,7 @@ export const flatten = (object, callback) => [].concat(object).flatMap(callback)
 
 export const toLocaleCurrency = (config /* to, amount, countryCode */) => {
   const { to, amount, countryCode, fixTo } = config;
-  if (!( amount || isNaN(amount) || to || countryCode)) return;
+  if (!( amount && !isNaN(amount) && to && countryCode)) return;
   const fixed = +amount.toFixed(fixTo || 2);
   const converted =  new Intl.NumberFormat(
     countryCode,

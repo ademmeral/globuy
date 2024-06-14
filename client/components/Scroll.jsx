@@ -38,6 +38,7 @@ function ButtonPrev({ children, ...props }) {
       ref.current.classList.add('x-mandatory');
 
     const handleScroll = e => {
+      if (!ref.current) return;
       setDisabled(true);
       clearTimeout(timeout.current);
       if (direction === 'x')
@@ -58,6 +59,7 @@ function ButtonPrev({ children, ...props }) {
   }, [])
 
   const handleClick = e => {
+    if (!ref.current) return;
     let expected;
     if (direction === 'x') {
       const { current: c } = ref
@@ -87,12 +89,9 @@ function ButtonNext({ children, ...props }) {
     if (!ref.current) return;
     if (!ref.current.classList.contains(`${direction}-mandatory`))
       ref.current.classList.add(`${direction}-mandatory`);
-    if (direction === 'x' && ref.current.scrollWidth <= ref.current.offsetWidth) 
-      setHide(true);
-    if (direction === 'y' && ref.current.scrollHeight <= ref.current.offsetHeight) 
-      setHide(true);
     
     const handleScroll = e => {
+      if (!ref.current) return;
       setDisabled(true);
       clearTimeout(timeout.current);
       const target = ref.current;
@@ -109,8 +108,11 @@ function ButtonNext({ children, ...props }) {
         setHide(st + oh >= (sh - GAP_MD));
       timeout.current = setTimeout(() => setDisabled(false), TIMEOUT_MD)
     };
+    
     ref.current.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
+    handleScroll();
+
     return () => {
       if (!ref.current) return;
       ref.current.removeEventListener('scroll', handleScroll)
@@ -119,6 +121,7 @@ function ButtonNext({ children, ...props }) {
   }, [])
 
   const handleClick = e => {
+    if (!ref.current) return;
     const { current: c } = ref
     const expected = c.scrollLeft + c.offsetWidth;
     const targetPos = Math.round(

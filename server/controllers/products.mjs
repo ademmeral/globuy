@@ -53,7 +53,7 @@ export const getByQery = async (req, res) => {
 
     if ('star' in req.query)
     {
-      const ratings = await Rating.find({ star: { $eq: req.query.star } }),
+      const ratings = await Rating.find({ star: { $gt: +req.query.star - 0.1 } }),
       ids = ratings.map(r => r.product);
       regExp = { ...regExp, _id: { $in: ids } }
       delete regExp.star;

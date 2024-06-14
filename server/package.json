@@ -7,7 +7,8 @@
     "test": "",
     "server": "nodemon src/index.mjs",
     "client": "npm run dev --prefix ../client",
-    "dev": "concurrently \"npm run client\" \"npm run server"
+    "stripe-listen" : "stripe listen --forward-to localhost:3001/webhook",
+    "dev": "concurrently \"npm run client\" \"npm run server\" \"npm run stripe-listen"
   },
   "keywords": [
     "online shopping",
@@ -22,7 +23,6 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.2.0",
-    "concurrently": "^8.2.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

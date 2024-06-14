@@ -10,7 +10,7 @@ import '@styles/Stories/Displayer.css';
 function StoriesViewer({ sources, setShouldShow, pid }) {
 
   return (
-    <div role='dialog' className="overlay pos-abs abs-full flex align-center justify-center">
+    <div role='dialog' className="overlay pos-fixed abs-full flex align-center justify-center">
       <button type="button" className='close-btn pos-abs' onClick={() => setShouldShow(false)}>
         <FaTimes />
       </button>
